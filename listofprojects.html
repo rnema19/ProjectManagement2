@@ -11,14 +11,15 @@
         padding: 0;
       }
 
-      html, body {
+      html,
+      body {
         font-family: Arial, sans-serif;
         height: 100%;
         overflow: hidden; /* Prevents scrolling */
       }
 
       body {
-        background-image: url('/imageFinal.webp'); /* Add your image path here */
+        background-image: url("./imageFinal.webp"); /* Add your image path here */
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -69,9 +70,14 @@
       .container {
         max-width: 1200px;
         padding: 2rem;
-        background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white for readability */
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.9
+        ); /* Semi-transparent white for readability */
         border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
         text-align: center;
       }
 
@@ -90,9 +96,9 @@
       }
 
       .project-card {
-        background-color: white;
+        background-color: #f3f3ff;
         border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         padding: 1.5rem;
         flex: 1 1 calc(33.333% - 2rem); /* 3 cards per row */
         max-width: 300px; /* Ensures all cards have consistent size */
