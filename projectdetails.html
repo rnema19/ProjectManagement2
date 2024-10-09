@@ -12,18 +12,20 @@
       }
 
       body {
-        font-family: Arial, sans-serif;
+        font-family: "Poppins", Arial, sans-serif;
         display: flex;
         flex-direction: column;
-        height: 100vh;
+        min-height: 100vh;
+        background-color: #f4f6f9;
+        color: #333;
       }
 
       nav {
-        background-color: #334;
+        background-color: #283593;
         color: white;
         padding: 1rem;
         width: 100%;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
 
       nav ul {
@@ -35,56 +37,123 @@
       }
 
       nav ul li {
-        margin-right: 1rem;
+        margin-right: 1.5rem;
+      }
+
+      nav ul li:last-child {
+        margin-right: 0;
       }
 
       nav ul li a {
         color: white;
         text-decoration: none;
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 1.2rem;
+        border-radius: 5px;
+        transition: background-color 0.3s ease-in-out;
       }
 
       nav ul li a:hover {
-        background-color: #555;
-        border-radius: 5px;
+        background-color: #3949ab;
       }
 
       .container {
         display: flex;
         flex: 1;
-        overflow: hidden; /* Prevents scrolling */
+        padding: 20px;
       }
 
       .left-section,
       .right-section {
         width: 20%;
-        background-color: #c6c6c6; /* Light greyish background for both left and right sections */
+        background-color: #e8ebf0;
         padding: 20px;
-        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin: 0 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
 
       .main-section {
-        width: 60%;
+        flex: 1;
         padding: 20px;
-        background-image: url('./photocrc.avif');
+        position: relative;
+        background-image: url("./photocrc.avif");
         background-size: cover;
         background-position: center;
+        border-radius: 10px;
         color: white;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-        overflow-y: auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
       }
 
-      .main-section h1 {
-        background-color: rgba(0, 0, 0, 0.5);
-        padding: 10px;
-        border-radius: 5px;
+      .main-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+        z-index: 1;
       }
 
-      .main-section p {
-        background-color: rgba(0, 0, 0, 0.5);
-        padding: 10px;
-        border-radius: 5px;
-        margin-bottom: 15px;
+      .content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        backdrop-filter: blur(10px); /* Glassmorphism effect */
+      }
+
+      .content h1 {
+        font-size: 2.2rem;
+        padding: 15px 25px;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        margin-bottom: 20px;
+        color: #fff;
+        text-transform: uppercase;
+        text-align: center;
+      }
+
+      .content p,
+      .content ul {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        color: #e0e0e0;
+        line-height: 1.8;
+        width: 90%;
+        max-width: 800px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        font-size: 1rem;
+      }
+
+      .content p strong {
+        color: #ffd54f;
+      }
+
+      .content ul {
+        list-style-type: none;
+        padding-left: 0;
+      }
+
+      .content ul li {
+        position: relative;
+        padding-left: 1.2rem;
+        margin-bottom: 10px;
+      }
+
+      .content ul li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #ffd54f;
+        font-size: 1.2rem;
       }
 
       .left-section ul {
@@ -93,49 +162,65 @@
       }
 
       .left-section ul li {
-        padding: 10px 0;
+        padding: 12px 0;
         cursor: pointer;
         transition: background-color 0.3s, color 0.3s;
       }
 
       .left-section ul li a {
         text-decoration: none;
-        color: #333;
+        color: #283593;
         display: block;
         padding: 10px;
+        font-weight: 500;
       }
 
-      .left-section ul li:hover,
       .left-section ul li a:hover {
-        background-color: #4caf50;
+        background-color: #3949ab;
         color: white;
+        border-radius: 5px;
+      }
+
+      .right-section h2 {
+        margin-bottom: 10px;
+        font-size: 1.4rem;
       }
 
       .right-section textarea {
         width: 100%;
         height: 80%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
         resize: none;
+        font-family: inherit;
+        font-size: 1rem;
       }
 
       .right-section button {
         width: 100%;
-        padding: 10px;
-        background-color: #4caf50;
+        padding: 12px;
+        background-color: #283593;
         color: white;
         border: none;
         cursor: pointer;
-        margin-top: 10px;
+        margin-top: 15px;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: background-color 0.3s ease-in-out;
       }
 
       .right-section button:hover {
-        background-color: #45a049;
+        background-color: #3949ab;
       }
 
       .footer {
-        background-color: #334;
+        background-color: #283593;
         color: white;
-        padding: 1rem;
+        padding: 1.2rem;
         text-align: center;
+        margin-top: auto;
+        font-size: 0.9rem;
       }
     </style>
   </head>
@@ -152,35 +237,59 @@
     <div class="container">
       <div class="left-section">
         <ul>
-          <li><a href="https://drive.google.com/file/d/1lXZuO1jUawBBq-8PyVt6vQBNkGVujQWk/view?usp=sharing" target="_blank">Drawing</a></li>
-          <li><a href="https://drive.google.com/file/d/1b5tlf2VyGhGH2Fb8K7yxRBrFVkJ87tBf/view?usp=sharing" target="_blank">Tender</a></li>
+          <li>
+            <a
+              href="https://drive.google.com/file/d/1lXZuO1jUawBBq-8PyVt6vQBNkGVujQWk/view?usp=sharing"
+              target="_blank"
+              >Drawing</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://drive.google.com/file/d/1b5tlf2VyGhGH2Fb8K7yxRBrFVkJ87tBf/view?usp=sharing"
+              target="_blank"
+              >Tender</a
+            >
+          </li>
           <li><a href="https://example.com/bill" target="_blank">Bill</a></li>
-          <li><a href="https://example.com/progress" target="_blank">Progress</a></li>
-          <li><a href="https://example.com/extra-stuff" target="_blank">Extra Stuff</a></li>
+          <li>
+            <a href="https://example.com/progress" target="_blank">Progress</a>
+          </li>
+          <li>
+            <a href="https://example.com/extra-stuff" target="_blank"
+              >Extra Stuff</a
+            >
+          </li>
         </ul>
       </div>
       <div class="main-section">
-        <h1>PG Classroom CRC Project</h1>
-        <p>
-          <strong>Project Overview:</strong> The PG Classroom CRC project aims to construct a state-of-the-art classroom for post graduate students.
-        </p>
-        <p>
-          <strong>Location:</strong> Visvesvaraya National Institute of Technology, Nagpur
-        </p>
-        <p>
-          <strong>Project Duration:</strong> 15 months (Expected completion: May 2025)
-        </p>
-        <p>
-          <strong>Key Features:</strong>
+        <div class="content">
+          <h1>PG Classroom CRC Project</h1>
+          <p>
+            <strong>Project Overview:</strong> The PG Classroom CRC project aims
+            to construct a state-of-the-art classroom for post graduate
+            students.<br>
+            <br>
+            <strong>Location:</strong> Visvesvaraya National Institute of
+            Technology, Nagpur<br>
+            <br>
+            <strong>Project Duration:</strong> 15 months (Expected completion:
+            May 2025)<br>
+            <br>
+            <!--           
+            <strong>Key Features:</strong>
+        
           <ul>
             <li>Vibrant Campus</li>
             <li>4 Storied Building</li>
             <li>Air-Conditioned Smart Classrooms</li>
-          </ul>
-        </p>
-        <p>
-          <strong>Current Status:</strong> The project is currently in the initial construction phase. Foundation work has been completed, and the structural frame is being erected.
-        </p>
+          </ul> -->
+
+            <strong>Current Status:</strong> The project is currently in the
+            initial construction phase. Foundation work has been completed, and
+            the structural frame is being erected.
+          </p>
+        </div>
       </div>
       <div class="right-section">
         <h2>Add Comments</h2>
