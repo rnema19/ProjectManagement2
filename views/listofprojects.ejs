@@ -10,7 +10,7 @@
     <nav>
       <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/listofprojects">Projects</a></li>
+        <li><a href="/projects">Projects</a></li>
         <li><a href="#tasks">Notifications</a></li>
         <li><a href="#reports">About</a></li>
       </ul>
@@ -23,12 +23,12 @@
           <% projects.forEach(function(project) { %>
             <div
               class="project-card"
-              onclick="window.location.href='/projectdetails' "
+              onclick="window.location.href=`/projectdetails/:${id}` "
             >
-              <div class="project-name"><%= project.name %></div>
+              <div class="project-name"><%= project.title %></div>
               <div class="project-info">Supervisor: <%= project.supervisor %></div>
               <div class="project-info">Company: <%= project.company %></div>
-              <div class="project-completion"><%= project.completion %>% Complete</div>
+              <div class="project-completion"><%= project.progress %>% Complete</div>
             </div>
           <% }); %>
         </div>

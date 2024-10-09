@@ -3,8 +3,10 @@ const app = express()
 const mongoose = require('mongoose')
 var ejsMate = require('ejs-mate')
 const path = require('path')
+const Project = require('./schema/projectSchema')
+const Bill = require('./schema/billSchema')
 
-mongoose.connect('mongodb://localhost:27017/bill').
+mongoose.connect('mongodb://localhost:27017/projectDB').
     then(() => {
         console.log("Connection Successful!!!")
     })
@@ -33,17 +35,8 @@ app.get('/dashboard',(req,res)=>{
     res.render('dashboard')
 })
 
-app.get('/projects', (req, res) => {
-  const projects = [
-    {
-      id: 1,
-      name: "PG Classroom Complex",
-      supervisor: "Dr. Abhay Tawalare",
-      company: "Mana Constructions",
-      completion: 10,
-    },
-    // ... other projects
-  ];
+app.get('/projects', async(req, res) => {
+  const projects = await Project.find({})
   res.render('listofprojects', { projects });
 });
 

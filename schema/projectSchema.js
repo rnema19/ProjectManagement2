@@ -1,15 +1,17 @@
 const mongoose = require('mongoose')
+const bill = require('./billSchema')
 const { Schema } = mongoose
 
-const projectSchema = {
-    title: String,
-    overview: String,
-    location: String,
-    duration: String,
-    status: String,
+const projectSchema = new Schema({
+    title: {type:String,required : true},
+    supervisor : {type:Boolean,required : true},
+    company : {type:Boolean,required : true},
+    overview: {type:String,required : true},
+    location: {type:String,required : true},
+    duration: {type:String,required : true},
+    status: {type:Boolean,required : true},
     startDate: Date,
-    endDate: Date,
     progress: Number
-}
+})
 
-module.exports = projectSchema
+module.exports = mongoose.model('Project',projectSchema)
