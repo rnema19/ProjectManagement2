@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drawings</title>
+  <link rel="stylesheet" href="/css/drawings.css">
+</head>
+<body>
+  <h1>Project Drawings</h1>
+  <div class="drawing-grid">
+    <% drawings.forEach(function(drawing) { %>
+      <div class="drawing-card">
+        <img src="<%= drawing.imageUrl %>" alt="<%= drawing.name %>">
+        <p><%= drawing.name %></p>
+      </div>
+    <% }); %>
+  </div>
+</body>
+</html>
