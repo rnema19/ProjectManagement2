@@ -12,6 +12,10 @@ const projectSchema = new Schema({
     status: {type:String,required : true},
     startDate: Date,
     progress: Number
-})
+},
+{
+  collection: 'project'
+}
+)
 
 module.exports = mongoose.model('Project',projectSchema)
