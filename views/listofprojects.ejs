@@ -25,12 +25,12 @@
               class="project-card"
               onclick="window.location.href=`/projectdetails/<%= project.id %>` "
             >
-              <div class="project-name"><%= project.title %></div>
+              <div class="project-name"><%- project.title %></div>
               <div class="project-info">Supervisor: <%- project.supervisor %></div>
               <div class="project-info">Company: <%- project.company %></div>
-              <div class="project-completion"><%= project.progress %>% Complete</div>
+              <div class="project-completion"><%- project.progress %>% Complete</div>
             </div>
-          <% }; %>
+          <% } %>
         </div>
       </div>
     </div>

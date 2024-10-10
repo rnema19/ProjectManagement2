@@ -4,8 +4,8 @@ const { Schema } = mongoose
 
 const projectSchema = new Schema({
     title: {type:String,required : true},
-    supervisor : {type:Boolean,required : true},
-    company : {type:Boolean,required : true},
+    supervisor : {type:String,required : true},
+    company : {type:String,required : true},
     overview: {type:String,required : true},
     location: {type:String,required : true},
     duration: {type:String,required : true},
