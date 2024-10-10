@@ -20,17 +20,17 @@
       <div class="container">
         <h1>Projects</h1>
         <div class="project-grid" id="projectGrid">
-          <% projects.forEach(function(project) { %>
+          <% for(let project of projects) { %>
             <div
               class="project-card"
-              onclick="window.location.href=`/projectdetails/:${id}` "
+              onclick="window.location.href=`/projectdetails/<%= project.id %>` "
             >
               <div class="project-name"><%= project.title %></div>
-              <div class="project-info">Supervisor: <%= project.supervisor %></div>
-              <div class="project-info">Company: <%= project.company %></div>
+              <div class="project-info">Supervisor: <%- project.supervisor %></div>
+              <div class="project-info">Company: <%- project.company %></div>
               <div class="project-completion"><%= project.progress %>% Complete</div>
             </div>
-          <% }); %>
+          <% }; %>
         </div>
       </div>
     </div>

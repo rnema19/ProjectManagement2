@@ -9,7 +9,7 @@ const projectSchema = new Schema({
     overview: {type:String,required : true},
     location: {type:String,required : true},
     duration: {type:String,required : true},
-    status: {type:Boolean,required : true},
+    status: {type:String,required : true},
     startDate: Date,
     progress: Number
 })

@@ -38,26 +38,31 @@ app.get('/dashboard',(req,res)=>{
 app.get('/projects', async(req, res) => {
   const projects = await Project.find({})
   res.render('listofprojects', { projects });
+  console.log('Projects',projects)
 });
 
-app.get('/projectdetails', (req, res) => {
-  const project = {
-    title: "PG Classroom CRC Project",
-    overview: "The PG Classroom CRC project aims to construct a state-of-the-art classroom for postgraduate students.",
-    location: "Visvesvaraya National Institute of Technology, Nagpur",
-    duration: "15 months (Expected completion: May 2025)",
-    status: "The project is currently in the initial construction phase. Foundation work has been completed, and the structural frame is being erected.",
-  };
+app.get('/projectdetails/:id', async (req, res) => {
+  const projectId = req.params.id; 
+  try {
+    const project = await Project.findById(projectId); 
 
-  const projectLinks = [
-    { name: "Drawing", url: "https://drive.google.com/file/d/1lXZuO1jUawBBq-8PyVt6vQBNkGVujQWk/view?usp=sharing" },
-    { name: "Tender", url: "https://drive.google.com/file/d/1b5tlf2VyGhGH2Fb8K7yxRBrFVkJ87tBf/view?usp=sharing" },
-    { name: "Bill", url: "https://example.com/bill" },
-    { name: "Progress", url: "https://example.com/progress" },
-    { name: "Extra Stuff", url: "https://example.com/extra-stuff" },
-  ];
+    if (!project) {
+      return res.status(404).send('Project not found'); 
+    }
 
-  res.render('project_details', { project, projectLinks });
+    const projectLinks = [
+      { name: "Drawing", url: "https://drive.google.com/file/d/1lXZuO1jUawBBq-8PyVt6vQBNkGVujQWk/view?usp=sharing" },
+      { name: "Tender", url: "https://drive.google.com/file/d/1b5tlf2VyGhGH2Fb8K7yxRBrFVkJ87tBf/view?usp=sharing" },
+      { name: "Bill", url: "https://example.com/bill" },
+      { name: "Progress", url: "https://example.com/progress" },
+      { name: "Extra Stuff", url: "https://example.com/extra-stuff" },
+    ];
+
+    res.render('project_details', { project, projectLinks });
+  } catch (error) {
+    console.error(error); 
+    res.status(500).send('Error fetching project details'); 
+  }
 });
 
 app.get('/drawings', (req, res) => {
