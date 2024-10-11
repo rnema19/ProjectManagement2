@@ -70,13 +70,7 @@ app.get('/projectdetails/:id', async (req, res) => {
 });
 
 app.get('/drawings', (req, res) => {
-  const drawings = [
-    { name: 'Drawing Name 1', imageUrl: 'drawing1.jpg' },
-    { name: 'Drawing Name 2', imageUrl: 'drawing2.jpg' },
-    { name: 'Drawing Name 3', imageUrl: 'drawing3.jpg' },
-    // ...more drawings
-  ];
-  res.render('drawings', { drawings });
+  res.render('drawings');
 });
 
 

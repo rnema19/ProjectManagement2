@@ -9,12 +9,28 @@
 <body>
   <h1>Project Drawings</h1>
   <div class="drawing-grid">
-    <% drawings.forEach(function(drawing) { %>
-      <div class="drawing-card">
-        <img src="<%= drawing.imageUrl %>" alt="<%= drawing.name %>">
-        <p><%= drawing.name %></p>
-      </div>
-    <% }); %>
+    <!-- Hardcoded drawing cards -->
+    <div class="drawing-card">
+      <img src="/images/drawing1.jpg" alt="Sunset Over Mountains">
+      <p>Sunset Over Mountains</p>
+    </div>
+    <div class="drawing-card">
+      <img src="/images/drawing2.jpg" alt="Forest Path">
+      <p>Forest Path</p>
+    </div>
+    <div class="drawing-card">
+      <img src="/images/drawing3.jpg" alt="Ocean Waves">
+      <p>Ocean Waves</p>
+    </div>
+    <div class="drawing-card">
+      <img src="/images/drawing4.jpg" alt="City Skyline">
+      <p>City Skyline</p>
+    </div>
+    <div class="drawing-card">
+      <img src="/images/drawing5.jpg" alt="Desert Dunes">
+      <p>Desert Dunes</p>
+    </div>
+    <!-- You can add more cards as needed -->
   </div>
 </body>
 </html>
