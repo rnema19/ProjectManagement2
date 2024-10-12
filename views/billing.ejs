@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing System</title>
+    <link rel="stylesheet" href="/css/billing.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul class="navbar-links">
+            <li><a href="/dashboard">Home</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="#tasks">Notifications</a></li>
+            <li><a href="#reports">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Billing System</h1>
+
+        <div class="table-container">
+            <table id="billTable">
+                <thead>
+                    <tr>
+                        <th>Item ID</th>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Units</th>
+                        <th>Rate</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="billBody">
+                    <!-- Rows will be added dynamically here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="form-container">
+            <input type="number" id="item_id" placeholder="Item ID" required />
+            <input type="text" id="name" placeholder="Name" class="name-input" required />
+            <input type="number" id="quantity" placeholder="Quantity" required />
+            <input type="text" id="units" placeholder="Units" required />
+            <input type="number" id="rate" placeholder="Rate" required />
+            <button class="button" onclick="addItem()">Add Item</button>
+        </div>
+
+        <div id="totalAmount">
+            Total Amount: <span id="total">0</span>
+        </div>
+
+        <div class="submit-section">
+            <button class="button submit-button" onclick="submitBill()">Submit Bill</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Project Management. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let items = [];
+        let totalAmount = 0;
+
+        // Function to add item to the table
+        function addItem() {
+            const item_id = document.getElementById('item_id').value;
+            const name = document.getElementById('name').value;
+            const quantity = document.getElementById('quantity').value;
+            const units = document.getElementById('units').value;
+            const rate = document.getElementById('rate').value;
+
+            if (!item_id || !name || !quantity || !units || !rate) {
+                alert("All fields are required!");
+                return;
+            }
+
+            const amount = quantity * rate;
+
+            const newItem = {
+                item_id: item_id,
+                name: name,
+                quantity: quantity,
+                units: units,
+                rate: rate,
+                amount: amount
+            };
+
+            items.push(newItem);
+            totalAmount += amount;
+
+            updateTable();
+            updateTotalAmount();
+
+            // Clear inputs
+            document.getElementById('item_id').value = '';
+            document.getElementById('name').value = '';
+            document.getElementById('quantity').value = '';
+            document.getElementById('units').value = '';
+            document.getElementById('rate').value = '';
+        }
+
+        // Function to update the table
+        function updateTable() {
+            const billBody = document.getElementById('billBody');
+            billBody.innerHTML = '';
+
+            items.forEach((item, index) => {
+                const row = `<tr>
+                    <td>${item.item_id}</td>
+                    <td>${item.name}</td>
+                    <td>${item.quantity}</td>
+                    <td>${item.units}</td>
+                    <td>${item.rate}</td>
+                    <td>${item.amount}</td>
+                    <td><button class="delete-btn" onclick="deleteRow(${index})">Delete</button></td>
+                </tr>`;
+                billBody.innerHTML += row;
+            });
+        }
+
+        // Function to delete a row
+        function deleteRow(index) {
+            totalAmount -= items[index].amount;
+            items.splice(index, 1);
+            updateTable();
+            updateTotalAmount();
+        }
+
+        // Function to update total amount
+        function updateTotalAmount() {
+            document.getElementById('total').innerText = totalAmount.toFixed(2);
+        }
+
+        // Function to submit the bill
+        function submitBill() {
+            if (items.length === 0) {
+                alert("No items in the bill to submit.");
+                return;
+            }
+            alert("Bill submitted successfully!");
+            console.log("Bill Data:", items);
+            // Reset data
+            items = [];
+            totalAmount = 0;
+            updateTable();
+            updateTotalAmount();
+        }
+    </script>
+
+</body>
+</html>

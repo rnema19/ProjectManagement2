@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const project = require('../schema/projectSchema');
+const project = require('../model/projectSchema');
 const data = require('./proj_list');
 
 mongoose.connect('mongodb://localhost:27017/projectDB')

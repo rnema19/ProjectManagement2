@@ -11,8 +11,16 @@ const projectSchema = new Schema({
     duration: {type:String,required : true},
     status: {type:String,required : true},
     startDate: Date,
-    progress: Number
+    progress: {type : Number, min : 0,max : 100},
+
+    bills : [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Bill'
+      }
+    ]
 },
+
 {
   collection: 'project'
 }
