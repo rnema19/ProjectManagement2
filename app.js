@@ -28,6 +28,8 @@ app.set('view engine', 'ejs');
 app.set('views',path.join(__dirname,'./views'))
 app.use(express.static(path.join(__dirname,'./public')))
 
+app.use('/project/:id/bill',billroutes)
+
 app.get('/',(req,res)=>{
     res.render('login')
 })
@@ -43,10 +45,10 @@ app.get('/dashboard',(req,res)=>{
 app.get('/projects', async(req, res) => {
   const projects = await Project.find({})
   res.render('listofprojects', { projects });
-  console.log('Projects',projects)
+  // console.log('Projects',projects)
 });
 
-app.get('/projectdetails/:id', async (req, res) => {
+app.get('/project/:id', async (req, res) => {
   const projectId = req.params.id; 
   try {
     const project = await Project.findById(projectId); 
@@ -62,11 +64,10 @@ app.get('/projectdetails/:id', async (req, res) => {
   }
 });
 
-app.get('/billing',(req,res)=>{
-  res.render('billing')
-})
+// app.get('/billing',(req,res)=>{
+//   res.render('billing')
+// })
 
-// app.use('projectdetails/:id/billing',billroutes)
 
 app.get('/drawings', (req, res) => {
   res.render('drawings');

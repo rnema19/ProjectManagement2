@@ -23,7 +23,7 @@
           <% for(let project of projects) { %>
             <div
               class="project-card"
-              onclick="window.location.href=`/projectdetails/<%= project.id %>` "
+              onclick="window.location.href=`/project/<%= project.id %>` "
             >
               <div class="project-name"><%- project.title %></div>
               <div class="project-info">Supervisor: <%- project.supervisor %></div>
