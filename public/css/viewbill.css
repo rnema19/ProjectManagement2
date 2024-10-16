@@ -12,16 +12,24 @@ body {
 .content {
     flex: 1;
     padding: 20px;
+    width: 100%; /* Ensure the content is full width */
+    max-width: 1200px; /* Optional: Restrict content width */
 }
 
-h1, h2 {
+/* Center alignment only for the Bill Details heading */
+h1.bill-details-heading {
     color: #333;
-}
-
-.bill-info, .amount-summary {
+    text-align: center; /* Center only the Bill Details heading */
     margin-bottom: 20px;
 }
 
+/* Left alignment for Bill Info items */
+.bill-info {
+    text-align: left; /* Ensure Bill ID, Bill Name, and Bill Date are left-aligned */
+    margin-bottom: 20px;
+}
+
+/* Keep original table alignment */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -35,7 +43,7 @@ table, th, td {
 
 th, td {
     padding: 10px;
-    text-align: left;
+    text-align: left; /* Keep table content left-aligned */
 }
 
 th {
@@ -48,6 +56,8 @@ th {
     padding: 10px 15px;
     text-decoration: none;
     border-radius: 5px;
+    display: inline-block;
+    text-align: center;
 }
 
 .button:hover {
@@ -59,10 +69,11 @@ th {
     background-color: #002366; /* Dark blue color */
     padding: 15px 0;
     text-align: center;
+    width: 100%;
 }
 
 .navbar-container {
-    display: inline-block;
+    display: inline-block; /* Ensure content inside navbar is centered */
 }
 
 .navbar-brand, .nav-link {

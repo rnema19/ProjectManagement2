@@ -71,10 +71,6 @@ app.get('/project/:id', async (req, res) => {
   }
 });
 
-// app.get('/billing',(req,res)=>{
-//   res.render('billing')
-// })
-
 
 app.get('/drawings', (req, res) => {
   res.render('drawings');
