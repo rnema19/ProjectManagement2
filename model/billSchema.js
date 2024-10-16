@@ -2,9 +2,9 @@ const mongoose = require('mongoose')
 const {Schema} = mongoose
 
 const billSchema = new Schema({
-    "bill_id": {type:Number,required:true},
-    "date": {type:Date,required:true},
-    "Bill_Name" : {type:String,required:true},
+    "bill_id": {type:Number},
+    "date": {type:Date},
+    "Bill_Name" : {type:String},
 
     "items": [
         {

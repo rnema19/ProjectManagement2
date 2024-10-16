@@ -7,7 +7,7 @@ const data = [
         "location": "Nagpur",
         "duration": "15 months (Expected completion: May 2025)",
         "status": "Completed",
-        "progress": 100
+        "progress": 100,
     },
     {
         "title": "Library Extension",

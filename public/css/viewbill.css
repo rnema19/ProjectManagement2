@@ -9,28 +9,17 @@ body {
     min-height: 100vh;
 }
 
-.container {
+.content {
+    flex: 1;
     padding: 20px;
 }
 
-h1 {
+h1, h2 {
     color: #333;
 }
 
-.button-group {
+.bill-info, .amount-summary {
     margin-bottom: 20px;
-}
-
-.button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.button:hover {
-    background-color: #0056b3;
 }
 
 table {
@@ -51,6 +40,18 @@ th, td {
 
 th {
     background-color: #f4f4f4;
+}
+
+.button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background-color: #0056b3;
 }
 
 /* Navbar styling */

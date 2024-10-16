@@ -1,28 +1,107 @@
 const express = require('express');
-const app = express()
-var router = express.Router({mergeParams:true})
-const path = require('path');
-const bill = require('../model/billSchema')
-const project = require('../model/projectSchema')
+const router = express.Router({ mergeParams: true });
+const Bill = require('../model/billSchema');
+const Project = require('../model/projectSchema');
 
-router.get('/',async(req,res)=>{
-    const project_id = req.params.id
-    console.log(`Displaying billing page for project id: ${project_id}`)
-    res.render('billing',{project_id})
-})    
+router.get('/', async (req, res) => {
+    const projectId = req.params.id;
 
-router.get('/addbill',async(req,res)=>{
-    const project_id = req.params.id
-    // console.log(`Displaying billing page for project id: ${project_id}`)
-    res.render('addbill',{project_id})
-}) 
+    try {
+        // Fetch the project with populated bills
+        const project = await Project.findById(projectId).populate('bills');
 
-// router.post('/',async(req,res)=>{
-//     const project_id = req.params.id
-//     console.log(`Displaying billing page for project id: ${project_id}`)
+        if (!project) {
+            return res.status(404).send('Project not found');
+        }
 
-//     res.redirect('billing',{project_id})
-// })    
+        console.log(`Displaying billing page for project id: ${projectId}`);
+        res.render('billing', { project });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error fetching project');
+    }
+});
 
-module.exports = router
+router.get('/addbill', async (req, res) => {
+    const projectId = req.params.id;
+
+    try {
+        const project = await Project.findById(projectId);
+
+        if (!project) {
+            return res.status(404).send('Project not found');
+        }
+
+        res.render('addbill', { project });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error fetching project');
+    }
+});
+
+router.post('/addbill', async (req, res) => {
+    const projectId = req.params.id;
+
+    try {
+        const project = await Project.findById(projectId);
+        if (!project) {
+            return res.status(404).send('Project not found');
+        }
+
+        const bill = new Bill(req.body.bill);
+        project.bills.push(bill);
+        await bill.save();
+        await project.save();
+
+        console.log(`Bill added: ${bill}`);
+        res.redirect(`/project/${projectId}/bill`);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error adding bill');
+    }
+});
+
+// Route to view a specific bill for a project
+router.get('/:billId', async (req, res) => {
+    const { id: projectId, billId } = req.params;
+
+    try {
+        // Find the current project
+        const project = await Project.findById(projectId);
+        if (!project) {
+            return res.status(404).send('Project not found');
+        }
+
+        // Find the specific bill
+        const bill = await Bill.findById(billId);
+        if (!bill) {
+            return res.status(404).send('Bill not found');
+        }
+
+        // Find the most recent bill before the current one for the same project
+        const previousBill = await Bill.findOne({
+            _id: { $ne: billId }, // Exclude the current bill
+            date: { $lt: bill.date }, // Only consider bills before the current one
+            _id: { $in: project.bills } // Only look within the bills of this project
+        }).sort({ date: -1 }); // Sort to get the latest one before the current bill
+
+        // Determine the previous amount or default to 0
+        const previousAmount = previousBill ? previousBill.total_amount : 0;
+
+        console.log(`Displaying billing page for project: ${project.title}, bill: ${bill.Bill_Name}`);
+        console.log('Bill', bill);
+
+        // Render the view with the current bill and previous amount
+        res.render('viewbill', {
+            project: project,
+            bill: bill,
+            previousAmount
+        });
+    } catch (error) {
+        console.error('Error fetching project or bill:', error);
+        res.status(500).send('Error fetching project or bill');
+    }
+});
+
+module.exports = router;
 
