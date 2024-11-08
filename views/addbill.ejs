@@ -110,6 +110,12 @@
             updateTotal();
         }
 
+        function deleteRow(button) {
+            const row = button.parentElement.parentElement;
+            row.remove();
+            updateTotal();
+        }
+
         // Function to update the total amount
         function updateTotal() {
             let total = 0;

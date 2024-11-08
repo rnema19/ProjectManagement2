@@ -1,4 +1,5 @@
 const express = require('express');
+const app = express()
 const router = express.Router({ mergeParams: true });
 const Bill = require('../model/billSchema');
 const Project = require('../model/projectSchema');
@@ -97,6 +98,55 @@ router.get('/:billId', async (req, res) => {
             bill: bill,
             previousAmount
         });
+    } catch (error) {
+        console.error('Error fetching project or bill:', error);
+        res.status(500).send('Error fetching project or bill');
+    }
+});
+
+router.put('/:billId', async (req, res) => {
+    const { id: projectId, billId } = req.params;
+
+    try {
+        const project = await Project.findById(projectId);
+        if (!project) {
+            return res.status(404).send('Project not found');
+        }
+
+        const updatedBill = await Bill.findByIdAndUpdate(
+            billId,
+            { $set: req.body.bill }, // Update the bill data
+            { new: true, runValidators: true } // Return the updated document
+        );
+
+        if (!updatedBill) {
+            return res.status(404).send('Bill not found');
+        }
+
+        console.log(`Bill updated: ${updatedBill.Bill_Name}`);
+        res.redirect(`/project/${projectId}/bill/${billId}`); // Redirect to the updated bill's page
+    } catch (error) {
+        console.error('Error updating the bill:', error);
+        res.status(500).send('Error updating the bill');
+    }
+});
+
+// Other routes like GET, POST...
+router.get('/:billId/edit', async (req, res) => {
+    const { id: projectId, billId } = req.params;
+
+    try {
+        const project = await Project.findById(projectId);
+        if (!project) {
+            return res.status(404).send('Project not found');
+        }
+
+        const bill = await Bill.findById(billId);
+        if (!bill) {
+            return res.status(404).send('Bill not found');
+        }
+
+        res.render('editbill', { project, bill });
     } catch (error) {
         console.error('Error fetching project or bill:', error);
         res.status(500).send('Error fetching project or bill');

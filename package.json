@@ -3,7 +3,7 @@
     "ejs": "^3.1.10",
     "ejs-mate": "^4.0.0",
     "express": "^4.21.1",
-    "mongodb": "^6.9.0",
+    "mongodb": "^6.10.0",
     "mongoose": "^8.7.0",
     "nodemon": "^3.1.7",
     "routes": "^2.1.0"

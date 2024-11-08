@@ -52,9 +52,11 @@
         </table>
 
         <div class="amount-summary">
+            <p><strong>Abstract:</strong> <%= bill.total_amount.toFixed(2) %></p>
             <p><strong>Previous Amount:</strong> <%= previousAmount.toFixed(2) %></p>
-            <p><strong>Total Amount:</strong> <%= bill.total_amount %></p>
+            <p><strong>To Pay:</strong> <%= (bill.total_amount - previousAmount).toFixed(2) %></p>
         </div>
+
 
         <a href="/project/<%= project.id %>/bill" class="button">Back to Bills</a>
     </main>

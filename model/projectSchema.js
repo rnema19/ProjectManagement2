@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const bill = require('./billSchema')
+const tender = require('./tenderSchema');
 const { Schema } = mongoose
 
 const projectSchema = new Schema({
@@ -17,6 +18,12 @@ const projectSchema = new Schema({
       {
         type: Schema.Types.ObjectId,
         ref: 'Bill'
+      }
+    ],
+    tender : [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'tender'
       }
     ]
 },

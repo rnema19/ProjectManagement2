@@ -9,27 +9,30 @@ body {
     min-height: 100vh;
 }
 
-.content {
-    flex: 1;
+.container {
     padding: 20px;
-    width: 100%; /* Ensure the content is full width */
-    max-width: 1200px; /* Optional: Restrict content width */
 }
 
-/* Center alignment only for the Bill Details heading */
-h1.bill-details-heading {
+h1 {
     color: #333;
-    text-align: center; /* Center only the Bill Details heading */
+}
+
+.button-group {
     margin-bottom: 20px;
 }
 
-/* Left alignment for Bill Info items */
-.bill-info {
-    text-align: left; /* Ensure Bill ID, Bill Name, and Bill Date are left-aligned */
-    margin-bottom: 20px;
+.button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
 }
 
-/* Keep original table alignment */
+.button:hover {
+    background-color: #0056b3;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -43,25 +46,17 @@ table, th, td {
 
 th, td {
     padding: 10px;
-    text-align: left; /* Keep table content left-aligned */
+    text-align: left;
 }
 
 th {
     background-color: #f4f4f4;
 }
 
-.button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    text-decoration: none;
-    border-radius: 5px;
-    display: inline-block;
-    text-align: center;
-}
-
-.button:hover {
-    background-color: #0056b3;
+/* Right align the amount-summary section */
+.amount-summary {
+    text-align: right;
+    margin-top: 20px; /* Add spacing between table and summary */
 }
 
 /* Navbar styling */
@@ -69,11 +64,10 @@ th {
     background-color: #002366; /* Dark blue color */
     padding: 15px 0;
     text-align: center;
-    width: 100%;
 }
 
 .navbar-container {
-    display: inline-block; /* Ensure content inside navbar is centered */
+    display: inline-block;
 }
 
 .navbar-brand, .nav-link {

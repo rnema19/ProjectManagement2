@@ -49,6 +49,7 @@
                                 <td><%= new Date(bill.date).toLocaleDateString('en-US') %></td>
                                 <td>
                                     <a href="/project/<%= project._id %>/bill/<%= bill._id %>" class="view-link">View Bill</a>
+                                    <a href="/project/<%= project._id %>/bill/<%= bill._id %>/edit" class="edit-link">Edit Bill</a>
                                 </td>
                             </tr>
                         <% }) %>
