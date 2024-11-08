@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Progress</title>
+    <link rel="stylesheet" href="/css/progress.css" />
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/dashboard">Home</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="#tasks">Notifications</a></li>
+            <li><a href="#reports">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Project Progress</h1>
+
+        <!-- Progress bar section -->
+        <div class="progress-container">
+            <h3>Overall Project Progress</h3>
+            <div class="progress-bar-background">
+                <div class="progress-bar-fill" id="progressBar"></div>
+            </div>
+            <p><strong>Progress:</strong> 60% completed</p>
+        </div>
+
+        <!-- Display each progress update as a card -->
+        <div class="progress-grid">
+            <div class="progress-card">
+                <!-- <img src="/images/progress1.jpg" alt="Progress Image 1" class="progress-image"/> -->
+                <p><strong>View Image:</strong> <a href="https://i0.wp.com/theconstructor.org/wp-content/uploads/2011/03/excavation-procedure-for-foundation.jpg?fit=658%2C453&ssl=1" target="_blank">Click to view</a></p>
+                <p><strong>Description:</strong> Excavation of the site done upto 10m depth.</p>
+                <p><strong>Date:</strong> 11/01/2024</p>
+            </div>
+            <div class="progress-card">
+                <!-- <img src="/images/progress2.jpg" alt="Progress Image 2" class="progress-image"/> -->
+                <p><strong>View Image:</strong> <a href="https://constrofacilitator.com/wp-content/uploads/2021/11/Foundation-In-Building-and-Structures.jpg.webp" target="_blank">Click to view</a></p>
+                <p><strong>Description:</strong> Foundation done with column reinforcements.</p>
+                <p><strong>Date:</strong> 11/05/2024</p>
+            </div>
+            <div class="progress-card">
+                <!-- <img src="/images/progress3.jpg" alt="Progress Image 3" class="progress-image"/> -->
+                <p><strong>View Image:</strong> <a href="https://www.ultratechcement.com/for-homebuilders/home-building-explained-single/descriptive-articles/building-foundations-for-a-house" target="_blank">Click to view</a></p>
+                <p><strong>Description:</strong> Concrete work done till foundation and plinth level.</p>
+                <p><strong>Date:</strong> 11/08/2024</p>
+            </div>
+        </div>
+
+        <!-- Form to add new progress update -->
+        <h2>Add New Progress Update</h2>
+        <form action="/project/<%= project.id %>/progress/add" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="image">Upload Image:</label>
+                <input type="file" id="image" name="image" accept="image/*" required />
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+            <button type="submit">Add Progress</button>
+        </form>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Project Management. All rights reserved.</p>
+    </div>
+
+    <script>
+        // Set the width of the progress bar dynamically
+        document.getElementById("progressBar").style.width = "60%";
+    </script>
+</body>
+</html>
