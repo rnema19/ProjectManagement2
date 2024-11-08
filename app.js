@@ -7,6 +7,7 @@ const path = require('path')
 const Project = require('./model/projectSchema')
 const Bill = require('./model/billSchema')
 const billroutes = require('./routes/bill');
+const progressroutes = require('./routes/progress')
 
 mongoose.connect('mongodb://localhost:27017/projectDB').
     then(() => {
@@ -35,6 +36,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/project/:id/bill',billroutes)
+app.use('/project/:id/progress',progressroutes)
+
 
 // app.get('/viewbill',(req,res)=>{
 //     res.render('viewbill')
