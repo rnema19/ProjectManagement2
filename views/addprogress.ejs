@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Progress</title>
+    <link rel="stylesheet" href="/css/addprogress.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Add Progress</h1>
+        <form action="/project/<%= project.id %>/progress/addprogress" method="POST" >
+            <div class="form-group">
+                <label for="task">Task:</label>
+                <input type="text" id="task" name="task" required>
+            </div>
+
+            <div class="form-group">
+                <label for="initial_date">Initial Date:</label>
+                <input type="date" id="initial_date" name="initial_date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="final_date">Final Date:</label>
+                <input type="date" id="final_date" name="final_date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="percentage">Percentage:</label>
+                <input type="number" id="percentage" name="percentage" min="0" max="100" required>
+            </div>
+
+            <div class="form-group">
+                <label for="completed">Completed:</label>
+                <select id="completed" name="completed" required>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+
+            <!-- <div class="form-group">
+                <label for="image">Upload Image(s):</label>
+                <input type="file" id="image" name="image" multiple>
+            </div> -->
+
+            <button type="submit">Add Progress</button>
+        </form>
+    </div>
+</body>
+</html>

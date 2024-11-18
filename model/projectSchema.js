@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const bill = require('./billSchema')
-const tender = require('./tenderSchema');
+const progress = require('./progressSchema');
+
 const { Schema } = mongoose
 
 const projectSchema = new Schema({
@@ -12,7 +13,8 @@ const projectSchema = new Schema({
     duration: {type:String,required : true},
     status: {type:String,required : true},
     startDate: Date,
-    progress: {type : Number, min : 0,max : 100},
+    expectedDate: Date,
+    progresspercent: {type : Number, min : 0,max : 100},
 
     bills : [
       {
@@ -20,10 +22,10 @@ const projectSchema = new Schema({
         ref: 'Bill'
       }
     ],
-    tender : [
+    progresses : [
       {
         type: Schema.Types.ObjectId,
-        ref: 'tender'
+        ref: 'Progress'
       }
     ]
 },
