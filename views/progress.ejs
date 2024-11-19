@@ -10,7 +10,7 @@
     <nav>
         <ul>
             <li><a href="/dashboard">Home</a></li>
-            <li><a href="/projects">Projects</a></li>
+            <li><a href="/project">Projects</a></li>
             <li><a href="#tasks">Notifications</a></li>
             <li><a href="#reports">About</a></li>
         </ul>
@@ -41,14 +41,10 @@
                         <% if (prog.completed) { %>
                             <p><strong>Sub task completion percentage:</strong> 100% done, sub task is finished!!</p>
                         <% } else { %>
-                            <% 
-                                let initialDate = new Date(prog.initial_date).getTime();
-                                let finalDate = new Date(prog.final_date).getTime();
-                                let subTaskPercentage = ((finalDate - initialDate) / initialDate) * 100;
-                            %>
-                            <p><strong>Sub task completion percentage:</strong> <%= subTaskPercentage.toFixed(2) %> % done</p>
+                            <p><strong>Sub task completion percentage:</strong> <%= prog.percentage %> % done</p>
                         <% } %>
                         <p><strong>Expected Completion Date:</strong> <%- prog.final_date.toDateString() %></p>
+                        <a href="/project/<%= project._id %>/progress/<%= prog._id %>/viewprogress">View Task</a>
                     </div>
                 <% } %>
             <% } else { %>

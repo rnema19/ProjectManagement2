@@ -4,9 +4,7 @@ const mongoose = require('mongoose')
 var ejsMate = require('ejs-mate')
 var methodOverride = require('method-override')
 const path = require('path')
-const Project = require('./model/projectSchema')
-const Bill = require('./model/billSchema')
-const Progress = require('./model/progressSchema')
+const projectroutes = require('./routes/project');
 const billroutes = require('./routes/bill');
 const progressroutes = require('./routes/progress')
 
@@ -36,6 +34,7 @@ app.use(methodOverride('_method'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use('/project',projectroutes);
 app.use('/project/:id/bill',billroutes)
 app.use('/project/:id/progress',progressroutes)
 
@@ -51,29 +50,6 @@ app.get('/login',(req,res)=>{
 app.get('/dashboard',(req,res)=>{
     res.render('dashboard')
 })
-
-app.get('/projects', async(req, res) => {
-  const projects = await Project.find({})
-  res.render('listofprojects', { projects });
-  // console.log('Projects',projects)
-});
-
-app.get('/project/:id', async (req, res) => {
-  const projectId = req.params.id; 
-  try {
-    const project = await Project.findById(projectId); 
-
-    if (!project) {
-      return res.status(404).send('Project not found'); 
-    }
-
-    res.render('project_details', {project});
-  } catch (error) {
-    console.error(error); 
-    res.status(500).send('Error fetching project details'); 
-  }
-});
-
 
 app.get('/drawings', (req, res) => {
   res.render('drawings');

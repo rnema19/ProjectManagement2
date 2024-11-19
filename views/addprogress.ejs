@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h1>Add Progress</h1>
-        <form action="/project/<%= project.id %>/progress/addprogress" method="POST" >
+        <form action="/project/<%=project._id%>/progress/addprogress" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="task">Task:</label>
                 <input type="text" id="task" name="task" required>
@@ -43,10 +43,10 @@
                 <textarea id="description" name="description" rows="4" required></textarea>
             </div>
 
-            <!-- <div class="form-group">
+            <div class="form-group">
                 <label for="image">Upload Image(s):</label>
                 <input type="file" id="image" name="image" multiple>
-            </div> -->
+            </div>
 
             <button type="submit">Add Progress</button>
         </form>
