@@ -17,7 +17,9 @@
     </nav>
 
     <div class="container">
-        <h1>Project Progress</h1>
+        <h1>Project Progress for : <%= project.title %></h1>
+        <h3>Start Date : <%= project.startDate %></h3>
+        <h3>Expected Date : <%= project.expectedDate %></h3>
 
         <!-- Progress bar section -->
         <div class="progress-container">
@@ -45,6 +47,7 @@
                         <% } %>
                         <p><strong>Expected Completion Date:</strong> <%- prog.final_date.toDateString() %></p>
                         <a href="/project/<%= project._id %>/progress/<%= prog._id %>/viewprogress">View Task</a>
+                        <a href="/project/<%= project._id %>/progress/<%= prog._id %>/editprogress">Edit Task</a>
                     </div>
                 <% } %>
             <% } else { %>

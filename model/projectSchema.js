@@ -14,7 +14,7 @@ const projectSchema = new Schema({
     status: {type:String,required : true},
     startDate: Date,
     expectedDate: Date,
-    progresspercent: {type : Number, min : 0,max : 100},
+    progress: {type : Number, min : 0,max : 100},
 
     bills : [
       {

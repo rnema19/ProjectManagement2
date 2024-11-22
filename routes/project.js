@@ -5,19 +5,18 @@ const Project = require('../model/projectSchema')
 
 router.get('/', async(req, res) => {
   const projects = await Project.find({})
-//   const s_date = projects.startDate
-//     const e_date = projects.expectedDate
-//     var curr_date = new Date()
-//     const total = e_date-s_date
-//     const total_days = Math.ceil(( total) / (1000 * 60 * 60 * 24));
-//     const e_curr = e_date-curr_date
-//     const time_spent = curr_date-s_date
-//     const timespent_days = Math.ceil(( time_spent) / (1000 * 60 * 60 * 24));
-//     const percent = ((timespent_days/total_days)*100).toFixed(2)
-//     if(curr_date>e_date){
-//         percent = 100
-//     }
-  res.render('listofprojects', { projects });
+  // const s_date = projects.startDate
+  //   const e_date = projects.expectedDate
+  //   var curr_date = new Date()
+  //   const total = e_date-s_date
+  //   const total_days = Math.ceil(( total) / (1000 * 60 * 60 * 24));
+  //   const time_spent = curr_date-s_date
+  //   const timespent_days = Math.ceil(( time_spent) / (1000 * 60 * 60 * 24));
+  //   const percent = ((timespent_days/total_days)*100).toFixed(2)
+  //   if(curr_date>e_date){
+  //       percent = 100
+  //   }
+  res.render('listofprojects', { projects});
 //   console.log('Projects',projects)
 });
 

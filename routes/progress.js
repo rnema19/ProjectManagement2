@@ -64,7 +64,7 @@ router.get('/:progressId/viewprogress', async (req, res) => {
     }
 });
 
-router.put('/:progressId/editprogress', async (req, res) => {
+router.get('/:progressId/editprogress', async (req, res) => {
      const { id: projectId, progressId } = req.params;
 
     try {
@@ -72,24 +72,60 @@ router.put('/:progressId/editprogress', async (req, res) => {
         if (!project) {
             return res.status(404).send('Project not found');
         }
-
-        const updatedProgress = await Progress.findByIdAndUpdate(
-            progressId,
-            { $set: req.body.progress }, // Update the progress data
-            { new: true, runValidators: true } // Return the updated document
-        );
-
+        const updatedProgress = await Progress.findById(progressId)
         if (!updatedProgress) {
             return res.status(404).send('Progress not found');
         }
 
-        console.log(`Progress updated: ${updatedProgress.task}`);
-        res.redirect(`/project/${projectId}/progress/${progressId}/viewprogress`); // Redirect to the updated bill's page
+        // console.log(`Progress updated for: ${updatedProgress.task}`);
+        res.render('editprog_task', { project, progress: updatedProgress });
     } catch (error) {
         console.error('Error updating the bill:', error);
         res.status(500).send('Error updating the bill');
     }
 })
+
+router.put('/:progressId/editprogress', upload.array('image',3), async (req, res) => {
+    const { id: projectId, progressId } = req.params;
+    try {
+        const { task, initial_date, final_date, percentage, completed, description, removedImages } = req.body;
+
+        // Find the existing progress document
+        const progress = await Progress.findById(progressId);
+        if (!progress) {
+            return res.status(404).send('Progress not found');
+        }
+
+        // Remove images based on removedImages array
+        if (removedImages && Array.isArray(removedImages)) {
+            progress.image = progress.image.filter((img, index) => !removedImages.includes(index.toString()));
+        }
+
+        // Handle new image uploads if any
+        if (req.files && req.files.length > 0) {
+            const newImages = req.files.map(f => ({
+                fileName: f.filename,
+                url: f.path
+            }));
+            progress.image = progress.image.concat(newImages);
+        }
+
+        // Update other fields
+        progress.task = task;
+        progress.initial_date = initial_date ? new Date(initial_date) : progress.initial_date;
+        progress.final_date = final_date ? new Date(final_date) : progress.final_date;
+        progress.percentage = percentage;
+        progress.completed = completed === 'on';
+        progress.description = description;
+
+        await progress.save();
+
+        res.redirect(`/project/${projectId}/progress/${progressId}/viewprogress`);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+});
 
 router.get('/addprogress', async (req, res) => {
     const projectId = req.params.id;

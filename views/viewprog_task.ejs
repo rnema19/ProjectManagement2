@@ -18,6 +18,7 @@
     <div class="container">
         <h1>Progress Details</h1>
         <div class="progress-card">
+        <a href="/project/<%= project.id %>/progress">Back</a>
             <h3>Sub-task of Progress: <%= progress.task %></h3>
             <p><strong>Initial Date:</strong> <%= new Date(progress.initial_date).toLocaleDateString() %></p>
             <p><strong>Final Date:</strong> <%= new Date(progress.final_date).toLocaleDateString() %></p>
