@@ -192,16 +192,57 @@ button:disabled {
     cursor: not-allowed;
 }
 
+/* Add Progress Button */
+.add-progress-btn button {
+    background-color: #ff5e57;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px auto; /* Center the button */
+    display: block; /* Forces the button to take full width */
+    transition: background-color 0.3s ease;
+}
+
+.add-progress-btn button:hover {
+    background-color: #e04b48;
+}
+
+/* Back Button */
+.back {
+    display: block; /* Ensure it starts on a new line */
+    margin-top: 20px; /* Add some spacing above */
+}
+
+.back button {
+    background-color: #6c757d; /* Grey color for the Back button */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.back button:hover {
+    background-color: #5a6268; /* Darker grey on hover */
+}
+
+
 /* Footer styling */
 .footer {
     background-color: #002366; /* Dark blue color */
     color: #fff;
     text-align: center;
     padding: 10px 0;
-    position: sticky;
+    position: relative;  /* Make sure the footer stays at the bottom if content is enough */
     bottom: 0;
     width: 100%;
-    margin-top: auto;
+    margin-top: 20px;  /* Add a margin to space out from content */
+    clear: both;
 }
 
 /* Responsive adjustments */

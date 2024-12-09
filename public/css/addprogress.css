@@ -1,146 +1,91 @@
-/* General body and container styling */
+/* General Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background-image: url("/images/imageFinal.jpg"); /* Replace with your image path */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #333;
 }
 
+/* Navbar */
+nav {
+  background-color: #334;
+  color: white;
+  padding: 1rem;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  margin-right: 1rem;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+nav ul li a:hover {
+  background-color: #555;
+  border-radius: 5px;
+}
+
+/* Container */
 .container {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 600px;
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+  max-width: 700px;
+  margin: auto;
 }
 
-/* Heading styles */
-.container h1 {
-    text-align: center;
-    color: #333333;
-    margin-bottom: 20px;
-    font-size: 24px;
+/* Buttons */
+button, .btn {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
 }
 
-/* Form group styling */
-.form-group {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
+button:hover, .btn:hover {
+  background-color: #0056b3;
 }
 
-/* Label styles */
-.form-label {
-    margin-bottom: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #555555;
+/* Footer */
+footer {
+  background-color: #334;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Input and textarea styling */
-input[type="text"],
-input[type="date"],
-input[type="number"],
-select,
-textarea,
-input[type="file"] {
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    background-color: #ffffff;
-    color: #495057;
-    width: 100%;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+  }
 
-/* Specific styling for file input */
-input[type="file"] {
-    display: block;
-    padding: 0.375rem 0.75rem;
-    font-size: 14px;
-    color: #495057;
-    background-color: #ffffff;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-}
-
-/* Hover and focus effects */
-input[type="text"]:hover,
-input[type="date"]:hover,
-input[type="number"]:hover,
-select:hover,
-textarea:hover,
-input[type="file"]:hover {
-    border-color: #007bff;
-}
-
-input[type="text"]:focus,
-input[type="date"]:focus,
-input[type="number"]:focus,
-select:focus,
-textarea:focus,
-input[type="file"]:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-/* Textarea specific styles */
-textarea {
-    resize: vertical;
-}
-
-/* Button styling */
-button[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #ffffff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-}
-
-button[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
-button[type="submit"]:active {
-    background-color: #003d80;
-}
-
-/* Responsive design for smaller screens */
-@media (max-width: 576px) {
-    .container {
-        padding: 15px;
-    }
-
-    .container h1 {
-        font-size: 20px;
-    }
-
-    .form-group label {
-        font-size: 12px;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-        font-size: 12px;
-        padding: 8px;
-    }
-
-    button[type="submit"] {
-        font-size: 14px;
-        padding: 8px;
-    }
+  input, textarea, button, .btn {
+    font-size: 0.9rem;
+  }
 }

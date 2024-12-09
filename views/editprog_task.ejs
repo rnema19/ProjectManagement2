@@ -6,6 +6,15 @@
     <link rel="stylesheet" href="/css/editprog_task.css">
 </head>
 <body>
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <li><a href="/dashboard">Home</a></li>
+            <li><a href="/project">Projects</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
     <div class="container">
         <h1>Edit Progress</h1>
         <form 
@@ -33,9 +42,7 @@
                     type="date" 
                     id="initial_date" 
                     name="initial_date" 
-                    class="form-control"
                     value="<%= progress.initial_date ? new Date(progress.initial_date).toISOString().split('T')[0] : '' %>" 
-                    placeholder="Current: <%= progress.initial_date ? new Date(progress.initial_date).toLocaleDateString() : 'Not set' %>" 
                     required
                 >
             </div>
@@ -47,9 +54,7 @@
                     type="date" 
                     id="final_date" 
                     name="final_date" 
-                    class="form-control"
                     value="<%= progress.final_date ? new Date(progress.final_date).toISOString().split('T')[0] : '' %>" 
-                    placeholder="Current: <%= progress.final_date ? new Date(progress.final_date).toLocaleDateString() : 'Not set' %>" 
                     required
                 >
             </div>
@@ -64,7 +69,6 @@
                     min="0" 
                     max="100" 
                     value="<%= progress.percentage %>" 
-                    placeholder="Current: <%= progress.percentage %>%" 
                     required
                 >
             </div>
@@ -87,7 +91,6 @@
                     id="description" 
                     name="description" 
                     rows="5" 
-                    placeholder="Current: <%= progress.description %>" 
                     required
                 ><%= progress.description %></textarea>
             </div>
@@ -100,16 +103,12 @@
                         <% progress.image.forEach(function(img, index) { %>
                             <div class="image-item">
                                 <img src="<%= img.url %>" alt="<%= img.fileName %>">
-                                <!-- Hidden inputs with a different base name to avoid Multer conflicts -->
-                                <input type="hidden" name="existingImages[<%= index %>][fileName]" value="<%= img.fileName %>">
-                                <input type="hidden" name="existingImages[<%= index %>][url]" value="<%= img.url %>">
                             </div>
                         <% }) %>
                     <% } else { %>
                         <p>No images uploaded.</p>
                     <% } %>
                 </div>
-                <!-- Removed the "Remove" button and related functionality -->
             </div>
 
             <!-- New Images Upload -->
@@ -124,11 +123,15 @@
                 >
             </div>
 
-            <!-- Submit Button -->
+            <!-- Submit and Back Buttons -->
             <button type="submit" class="btn">Update Progress</button>
+            <a href="/project/<%= project._id %>/progress" class="btn-back">Back</a>
         </form>
     </div>
 
-    <!-- Removed JavaScript for Handling Image Removal -->
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Project Management. All rights reserved.</p>
+    </footer>
 </body>
 </html>

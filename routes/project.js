@@ -5,18 +5,22 @@ const Project = require('../model/projectSchema')
 
 router.get('/', async(req, res) => {
   const projects = await Project.find({})
-  // const s_date = projects.startDate
-  //   const e_date = projects.expectedDate
-  //   var curr_date = new Date()
-  //   const total = e_date-s_date
-  //   const total_days = Math.ceil(( total) / (1000 * 60 * 60 * 24));
-  //   const time_spent = curr_date-s_date
-  //   const timespent_days = Math.ceil(( time_spent) / (1000 * 60 * 60 * 24));
-  //   const percent = ((timespent_days/total_days)*100).toFixed(2)
-  //   if(curr_date>e_date){
-  //       percent = 100
-  //   }
+  .sort({startDate:1})
+  // projects.sort({startDate:1})
+  // projects.limit(10)
+  // res.render('allprojects', { projects});
   res.render('listofprojects', { projects});
+//   console.log('Projects',projects)
+});
+
+router.get('/addproject', async(req, res) => {
+  res.render('addproject');
+});
+
+router.post('/addproject', async(req, res) => {
+  const project = new Project(req.body)
+  await project.save()
+  res.redirect('/project');
 //   console.log('Projects',projects)
 });
 
@@ -35,6 +39,51 @@ router.get('/:id', async (req, res) => {
     res.status(500).send('Error fetching project details'); 
   }
 }); 
+
+router.get('/:id/editproject', async(req, res) => {
+  const projectId = req.params.id; 
+  try {
+    const project = await Project.findById(projectId); 
+
+    if (!project) {
+      return res.status(404).send('Project not found'); 
+    }
+
+    res.render('editproject', {project});
+  } catch (error) {
+    console.error(error); 
+    res.status(500).send('Error fetching project details'); 
+  }
+});
+
+router.put('/:id/editproject', async(req, res) => {
+  const projectId = req.params.id; 
+  // const {data} = req.body
+  try {
+    const project = await Project.findById(projectId);
+    // const up_project = new Project(req.body)
+
+
+    if (!project) {
+      return res.status(404).send('Project not found'); 
+    }
+    const updatedproject = await Project.findByIdAndUpdate(
+            projectId,
+            { $set: req.body }, // Update the bill data
+            { new: true, runValidators: true } // Return the updated document
+        );
+    res.redirect(`/project/${projectId}`);
+    console.log('Project data : ',project)
+  } catch (error) {
+    console.error(error); 
+    res.status(500).send('Error fetching project details'); 
+  }
+  // await project.save()
+  
+  
+});
+
+
 
 module.exports = router
 

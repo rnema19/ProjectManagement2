@@ -1,10 +1,11 @@
-/* General Reset */
+/* Universal Reset */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* Body Styles */
 body {
   font-family: Arial, sans-serif;
   background-image: url("/images/imageFinal.jpg"); /* Replace with your image path */
@@ -13,13 +14,13 @@ body {
   background-attachment: fixed;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100vh; /* Ensures the body fills the viewport height */
   color: #333;
 }
 
-/* Navbar */
+/* Navigation Bar */
 nav {
-  background-color: #334;
+  background-color: #334; /* Dark blue background */
   color: white;
   padding: 1rem;
   width: 100%;
@@ -29,7 +30,7 @@ nav {
 nav ul {
   list-style-type: none;
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Center align navbar items */
   padding: 0;
   margin: 0;
 }
@@ -42,32 +43,38 @@ nav ul li a {
   color: white;
   text-decoration: none;
   padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease;
 }
 
 nav ul li a:hover {
-  background-color: #555;
+  background-color: #555; /* Darker gray for hover */
   border-radius: 5px;
 }
 
-/* Main Container */
+/* Main Content */
+.main-content {
+  flex: 1; /* Ensures the content grows to fill available space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
 .container {
   background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white for readability */
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
-  max-width: 700px;
-  width: 90%;
-  margin: 2rem auto;
+  max-width: 600px;
+  width: 100%;
 }
 
-/* Heading */
 h1 {
   text-align: center;
   margin-bottom: 1.5rem;
   color: #333;
 }
 
-/* Form */
 form {
   display: flex;
   flex-direction: column;
@@ -79,11 +86,9 @@ label {
   color: #555;
 }
 
-input[type="text"],
-input[type="date"],
-input[type="number"],
+input,
 textarea,
-input[type="file"] {
+button {
   font-size: 1rem;
   padding: 0.75rem;
   margin-bottom: 1.5rem;
@@ -91,7 +96,6 @@ input[type="file"] {
   border-radius: 5px;
   width: 100%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9;
 }
 
 textarea {
@@ -106,22 +110,12 @@ textarea:focus {
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-input[type="checkbox"] {
-  margin-right: 10px;
-}
-
-/* Button */
 button {
   background-color: #007bff;
   color: white;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  padding: 0.75rem;
-  font-size: 1rem;
-  border-radius: 5px;
-  width: 100%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
@@ -132,38 +126,28 @@ button:focus {
   outline: none;
 }
 
-/* Back Button */
-.btn-back {
-  display: block;
-  margin-top: 1rem;
-  text-align: center;
-  padding: 0.75rem;
-  background-color: #6c757d;
-  color: white;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.btn-back:hover {
-  background-color: #5a6268;
-}
-
 /* Footer */
-footer {
-  background-color: #334;
-  color: white;
+.footer {
+  background-color: #334; /* Dark blue background */
+  color: white; /* White text for visibility */
   padding: 1rem;
   text-align: center;
   width: 100%;
+  margin-top: auto; /* Pushes footer to the bottom when content is insufficient */
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  position: relative; /* Ensure the footer does not overlap content */
+}
+
+.footer p {
+  margin: 0;
+  font-size: 16px; /* Ensure text is readable */
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .container {
     padding: 1.5rem;
+    margin: 1rem;
   }
 
   input,

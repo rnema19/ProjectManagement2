@@ -35,28 +35,33 @@
         </div>
 
         <div class="progress-grid">
-            <% if (project.progresses && project.progresses.length > 0) { %>
-                <% for (let prog of project.progresses) { %>
-                    <div class="progress-card">
-                        <h3>Stage: <%- prog.task %></h3>
-                        <p><strong>Description:</strong> <%- prog.description %></p>
-                        <% if (prog.completed) { %>
-                            <p><strong>Sub task completion percentage:</strong> 100% done, sub task is finished!!</p>
-                        <% } else { %>
-                            <p><strong>Sub task completion percentage:</strong> <%= prog.percentage %> % done</p>
-                        <% } %>
-                        <p><strong>Expected Completion Date:</strong> <%- prog.final_date.toDateString() %></p>
-                        <a href="/project/<%= project._id %>/progress/<%= prog._id %>/viewprogress">View Task</a>
-                        <a href="/project/<%= project._id %>/progress/<%= prog._id %>/editprogress">Edit Task</a>
-                    </div>
+    <% if (project.progresses && project.progresses.length > 0) { %>
+        <% for (let prog of project.progresses) { %>
+            <div class="progress-card">
+                <h3>Stage: <%- prog.task %></h3>
+                <p><strong>Description:</strong> <%- prog.description %></p>
+                <% if (prog.completed) { %>
+                    <p><strong>Sub task completion percentage:</strong> 100% done, sub task is finished!!</p>
+                <% } else { %>
+                    <p><strong>Sub task completion percentage:</strong> <%= prog.percentage %> % done</p>
                 <% } %>
-            <% } else { %>
-                <p>No progress data available as project not started.</p>
-            <% } %>
-        </div>
+                <p><strong>Expected Completion Date:</strong> <%- prog.final_date.toDateString() %></p>
+                <a href="/project/<%= project._id %>/progress/<%= prog._id %>/viewprogress">View Task</a>
+                <a href="/project/<%= project._id %>/progress/<%= prog._id %>/editprogress">Edit Task</a>
+            </div>
+        <% } %>
+    <% } %>
+</div>
+
+
 
         <!-- Add Progress Button -->
-        <a href="/project/<%= project._id %>/progress/addprogress" class="add-progress-btn">Add Progress</a>
+        <a href="/project/<%= project._id %>/progress/addprogress" class="button">
+            <button >Add Progress</button> 
+        </a>
+        <a href="/project/<%= project._id %>" class="back">
+            <button >Back</button> 
+        </a>
     </div>
 
     <div class="footer">

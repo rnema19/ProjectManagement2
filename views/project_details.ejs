@@ -11,7 +11,7 @@
       <ul>
         <li><a href="/dashboard">Home</a></li>
         <li><a href="/project">Projects</a></li>
-        <li><a href="#tasks">Notifications</a></li>
+        <li><a href="/project/<%= project.id %>/editproject">Edit Project</a></li>
         <li><a href="#reports">About</a></li>
       </ul>
     </nav>
@@ -43,7 +43,9 @@
             <strong>Project Overview:</strong> <%= project.overview %><br><br>
             <strong>Location:</strong> <%= project.location %><br><br>
             <strong>Project Duration:</strong> <%= project.duration %><br><br>
-            <strong>Current Status:</strong> <%= project.status %>
+            <strong>Current Status:</strong> <%= project.status %><br><br>
+            <strong>Start Date :</strong> <%= project.startDate %><br><br>
+            <strong>Completion Date :</strong> <%= project.expectedDate %><br><br>
           </p>
         </div>
       </div>

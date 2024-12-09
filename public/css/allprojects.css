@@ -8,7 +8,7 @@ html,
 body {
   font-family: Arial, sans-serif;
   height: 100%;
-  overflow: auto; /* Prevents scrolling */
+  overflow: hidden; /* Prevents scrolling */
 }
 
 body {
@@ -63,12 +63,7 @@ nav ul li a:hover {
 .container {
   max-width: 1200px;
   padding: 2rem;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.9
-  ); /* Semi-transparent white for readability */
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white for readability */
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
   text-align: center;
@@ -81,46 +76,27 @@ h1 {
   color: #333;
 }
 
-.project-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
+.project-list {
+  list-style-type: none; /* Remove bullets */
+  padding: 0;
+  margin: 0;
+  text-align: left; /* Align list items to the left */
 }
 
-.project-card {
-  background-color: #f3f3ff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  padding: 1.5rem;
-  flex: 1 1 calc(33.333% - 2rem); /* 3 cards per row */
-  max-width: 300px; /* Ensures all cards have consistent size */
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
+.project-list li {
+  margin: 10px 0; /* Spacing between list items */
 }
 
-.project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.project-name {
-  font-size: 1.4rem;
+.project-list a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 18px;
   font-weight: bold;
-  margin-bottom: 0.5rem;
 }
 
-.project-info {
-  margin-bottom: 0.5rem;
-}
-
-.project-completion {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  font-weight: bold;
-  color: #4caf50;
+.project-list a:hover {
+  text-decoration: underline;
+  color: #0056b3;
 }
 
 .footer {
@@ -136,11 +112,12 @@ h1 {
     flex-direction: column;
     align-items: center;
   }
+
   nav ul li {
     margin-bottom: 0.5rem;
   }
 
-  .project-card {
-    flex: 1 1 100%; /* Stacks cards on smaller screens */
+  .project-list {
+    font-size: 16px; /* Adjust font size for smaller screens */
   }
 }

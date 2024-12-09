@@ -32,6 +32,9 @@ router.get('/', async (req, res) => {
         if(curr_date>e_date){
             percent = 100
         }
+        if(time_spent<0){
+            percent = 0
+        }
 
         console.log(`Displaying progress page for project id: ${projectId}`);
         res.render('progress', {project,percent});

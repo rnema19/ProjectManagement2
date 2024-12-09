@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Projects</title>
-    <link rel="stylesheet" href="/css/listofprojects.css" />
+    <link rel="stylesheet" href="/css/allprojects.css" />
   </head>
   <body>
     <nav>
@@ -19,17 +19,15 @@
     <div class="main-content">
       <div class="container">
         <h1>Projects</h1>
-        <div class="project-grid" id="projectGrid">
+        <ul class="project-list">
           <% for(let project of projects) { %>
-            <div
-              class="project-card"
-              onclick="window.location.href=`/project/<%= project.id %>` ">
-              <div class="project-name"><%- project.title %></div>
-              <div class="project-info">Supervisor: <%- project.supervisor %></div>
-              <div class="project-info">Company: <%- project.company %></div>
-            </div>
+            <li>
+              <a href="/project/<%= project.id %>"><%- project.title %></a>
+              , Supervisor : <%= project.supervisor %>
+            </li>
+              
           <% } %>
-        </div>
+        </ul>
       </div>
     </div>
 
