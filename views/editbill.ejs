@@ -30,9 +30,10 @@
                 <input type="number" id="billId" name="bill[bill_id]" value="<%= bill.bill_id %>" readonly>
             </div>
 
+            <!-- Updated Bill Date Field -->
             <div class="form-field">
                 <label for="billDate">Bill Date:</label>
-                <input type="date" id="billDate" name="bill[date]" readonly>
+                <input type="date" id="billDate" name="bill[date]" value="<%= bill.date %>" required>
             </div>
 
             <table id="billTable">
@@ -44,7 +45,7 @@
                         <th>Units</th>
                         <th>Rate</th>
                         <th>Amount</th>
-                        <th>Action</th> <!-- New column for delete button -->
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,7 +57,7 @@
                             <td><input type="text" name="bill[items][<%= i %>][units]" value="<%= bill.items[i].units %>" required></td>
                             <td><input type="number" name="bill[items][<%= i %>][rate]" value="<%= bill.items[i].rate %>" oninput="calculateAmount(this)" required></td>
                             <td><input type="number" name="bill[items][<%= i %>][amount]" value="<%= bill.items[i].amount %>" readonly></td>
-                            <td><button type="button" onclick="deleteRow(this)">Delete</button></td> <!-- Delete button -->
+                            <td><button type="button" onclick="deleteRow(this)">Delete</button></td>
                         </tr>
                     <% } %>
                 </tbody>
@@ -81,8 +82,12 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('billDate').value = today;
+            // Prefill Bill Date with current date if not already set
+            const billDateInput = document.getElementById('billDate');
+            if (!billDateInput.value) {
+                const today = new Date().toISOString().split('T')[0];
+                billDateInput.value = today;
+            }
         });
 
         function addRow() {
@@ -94,7 +99,7 @@
             const unitsCell = newRow.insertCell(3);
             const rateCell = newRow.insertCell(4);
             const amountCell = newRow.insertCell(5);
-            const actionCell = newRow.insertCell(6); // New cell for delete button
+            const actionCell = newRow.insertCell(6);
 
             const rowIndex = table.rows.length;
 

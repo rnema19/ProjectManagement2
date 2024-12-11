@@ -30,9 +30,10 @@
                 <input type="number" id="billId" name="bill[bill_id]" placeholder="Enter Bill ID" required>
             </div>
 
+            <!-- Updated Bill Date Section -->
             <div class="form-field">
                 <label for="billDate">Bill Date:</label>
-                <input type="date" id="billDate" name="bill[date]" readonly>
+                <input type="date" id="billDate" name="bill[date]" required>
             </div>
 
             <table id="billTable">
@@ -70,7 +71,7 @@
     </div>
 
     <script>
-        // Set today's date to the Bill Date field
+        // Set today's date as the default value in the Bill Date field
         document.addEventListener('DOMContentLoaded', () => {
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('billDate').value = today;

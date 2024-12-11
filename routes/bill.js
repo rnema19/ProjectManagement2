@@ -91,6 +91,7 @@ router.get('/:billId', async (req, res) => {
 
         console.log(`Displaying billing page for project: ${project.title}, bill: ${bill.Bill_Name}`);
         console.log('Bill', bill);
+        console.log(`Previous Amount: `,previousAmount)
 
         // Render the view with the current bill and previous amount
         res.render('viewbill', {
