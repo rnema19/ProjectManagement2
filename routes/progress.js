@@ -44,6 +44,42 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/glance', async (req, res) => {
+    const projectId = req.params.id;
+
+    try {
+        // Fetch the project with populated progress
+        const project = await Project.findById(projectId).populate('progresses');
+        // const project = await Project.findById(projectId)
+        if (!project) {
+            return res.status(404).send('Project not found');
+        }
+        const s_date = project.startDate
+        const e_date = project.expectedDate
+        var curr_date = new Date()
+
+        const total = e_date-s_date
+        const total_days = Math.ceil(( total) / (1000 * 60 * 60 * 24));
+        // const e_curr = e_date-curr_date
+        const time_spent = curr_date-s_date
+        const timespent_days = Math.ceil(( time_spent) / (1000 * 60 * 60 * 24));
+
+        let percent = ((timespent_days/total_days)*100).toFixed(2)
+        if(curr_date>e_date){
+            percent = 100
+        }
+        if(time_spent<0){
+            percent = 0
+        }
+
+        console.log(`Displaying progress page for project id: ${projectId}`);
+        res.render('listview_progress', {project,percent});
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error fetching project');
+    }
+});
+
 router.get('/:progressId/viewprogress', async (req, res) => {
     const { progressId } = req.params;
 
