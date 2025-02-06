@@ -7,7 +7,7 @@ const {storage} = require('../cloudinary/index')
 const multer = require('multer')
 const upload = multer({ storage})
 
-
+/*
 router.get('/', async (req, res) => {
     const projectId = req.params.id;
 
@@ -44,7 +44,9 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/glance', async (req, res) => {
+*/
+
+router.get('/', async (req, res) => {
     const projectId = req.params.id;
 
     try {

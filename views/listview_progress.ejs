@@ -63,6 +63,7 @@
                             <td><%- prog.final_date %></td> <!-- Expected Completion Date -->
                             <td>
                                 <a href="/project/<%= project._id %>/progress/<%= prog._id %>/viewprogress">View</a>
+                                <a href="/project/<%= project._id %>/progress/<%= prog._id %>/editprogress">Edit</a>
                             </td>
                         </tr>
                     <% }) %>
@@ -74,8 +75,8 @@
             </tbody>
         </table>
 
-        <a href="/project/<%= project._id %>/progress" class="button">
-            <button>Back</button> 
+        <a href="/project/<%= project._id %>/addprogress" class="button">
+            <button>Add Progress</button> 
         </a>
     </div>
 
